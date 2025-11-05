@@ -9,7 +9,7 @@ use App\Exports\RegistrationsExport;
 
 class AdminController extends Controller
 {
-    private $adminPin = '1234'; // Change this
+    private $adminPin = '770022'; // Change this
 
     public function index(Request $request)
     {
