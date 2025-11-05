@@ -4,13 +4,12 @@
 
 @section('content')
     <!-- Header with Logout -->
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-        <div>
-            <h1 class="text-3xl md:text-4xl font-bold text-white mb-2 flex items-center">
+    <div class="bg-amber-950 flex flex-col md:flex-row justify-between items-center md:items-center rounded-2xl shadow-2xl p-6 md:p-8 mb-8 gap-4">
+        <div class="">
+            <h1 class="text-3xl md:text-4xl font-bold text-white flex items-center">
                 <span class="text-4xl mr-3">📊</span>
                 অ্যাডমিন ড্যাশবোর্ড
             </h1>
-            <p class="text-white/90 text-lg">রেজিস্ট্রেশন তালিকা পরিচালনা ও রপ্তানি করুন</p>
         </div>
         <a href="{{ route('admin.logout') }}" class="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-xl transition-all font-semibold flex items-center space-x-2 shadow-lg hover:shadow-xl">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,7 +66,7 @@
                 <div class="flex items-center justify-between">
                     <div class="flex-1">
                         <p class="text-purple-100 text-sm font-medium mb-2 uppercase tracking-wide">সর্বশেষ আইডি</p>
-                        <h3 class="text-2xl font-bold mb-1 truncate">{{ $registrations->first()->registration_id ?? 'N/A' }}</h3>
+                        <h3 class="text-xl font-bold mb-1 truncate">{{ $registrations->first()->registration_id ?? 'N/A' }}</h3>
                         <p class="text-purple-200 text-xs">{{ $registrations->first() ? $registrations->first()->name : 'কোনো তথ্য নেই' }}</p>
                     </div>
                     <div class="bg-white/20 rounded-full p-4 backdrop-blur-sm">
