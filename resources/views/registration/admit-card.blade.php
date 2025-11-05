@@ -1,114 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
+
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Admit Card - {{ $registration->registration_id }}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>এডমিট কার্ড - {{ $registration->registration_id }}</title>
 
     <style>
+        @font-face {
+            font-family: "Bangla";
+            src: url("{{ public_path('fonts/NotoSansBengali-Regular.ttf') }}") format("truetype");
+            font-weight: normal;
+        }
+
+        @font-face {
+            font-family: "Bangla";
+            src: url("{{ public_path('fonts/NotoSansBengali-Bold.ttf') }}") format("truetype");
+            font-weight: bold;
+        }
+
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         @page {
-            size: A4 landscape;
+            size: A4 portrait;
             margin: 0;
         }
 
         body {
-            font-family: "DejaVu Sans", "Arial", sans-serif;
+            width: 210mm;
+            min-height: 297mm;
             margin: 0;
             padding: 0;
             background: #f5f5f5;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 210mm;
+
+            font-family: "Bangla", sans-serif !important;
         }
 
-        /* Center Container */
         .page-container {
-            width: 100%;
-            height: 210mm;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15mm;
-        }
+    width: 100%;
+    min-height: 297mm;
+    padding: 10mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        /* Card Container - 70% width, centered */
         .card {
-            width: 70%;
-            max-width: 200mm;
-            padding: 15mm;
+            page-break-inside: avoid;
             background: linear-gradient(140deg, #ffe3ec, #ffd6a5);
-            border: 5px solid #ff4d6d;
-            border-radius: 8px;
+            border: 6px solid #ff4d6d;
+            border-radius: 10px;
+            padding: 18mm;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
         }
 
-        /* Watermark */
         .watermark {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 60%;
-            opacity: 0.06;
-            transform: translate(-50%, -50%) rotate(-15deg);
-            z-index: 0;
+            width: 80%;
+            opacity: 0.07;
+            transform: translate(-50%, -50%) rotate(-14deg);
         }
 
         /* Header */
         .header {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
             text-align: center;
+            margin-bottom: 10mm;
             position: relative;
             z-index: 1;
-            margin-bottom: 8mm;
-        }
-
-        .header-content {
-            flex: 1;
         }
 
         .header img {
             width: 28mm;
-            height: auto;
-            margin-right: 10mm;
+            margin-bottom: 3mm;
         }
 
         .header h1 {
             font-size: 22px;
-            margin: 0 0 2mm 0;
             color: #b40059;
             font-weight: bold;
-            line-height: 1.3;
+            line-height: 1.5;
         }
 
         .header p {
-            font-size: 12px;
-            margin: 0;
+            font-size: 14px;
             color: #333;
         }
 
-        /* Title Bar */
+        /* Title bar */
         .title {
             background: #ff4d6d;
             color: white;
             text-align: center;
-            padding: 4mm;
-            margin: 6mm 0;
+            padding: 4mm 0;
             border-radius: 6px;
             font-weight: bold;
             font-size: 18px;
-            letter-spacing: 2px;
+            margin-bottom: 10mm;
             position: relative;
             z-index: 1;
         }
@@ -116,9 +113,7 @@
         /* Content Layout */
         .content-row {
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            gap: 8mm;
+            gap: 10mm;
             position: relative;
             z-index: 1;
         }
@@ -130,20 +125,18 @@
 
         .info-box table {
             width: 100%;
+            font-size: 15px;
             border-collapse: collapse;
-            font-size: 13px;
         }
 
-        .info-box td {
+        td {
             padding: 2mm 0;
-            vertical-align: top;
         }
 
         .label {
             font-weight: bold;
             color: #b40059;
             width: 40%;
-            padding-right: 3mm;
         }
 
         .value {
@@ -155,22 +148,18 @@
         .qr-box {
             flex: 1;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
         }
 
         .qr-box strong {
-            font-size: 11px;
+            font-size: 12px;
             color: #b40059;
             margin-bottom: 4mm;
-            letter-spacing: 1px;
+            display: block;
         }
 
         .qr-box img {
-            width: 35mm;
-            height: 35mm;
+            width: 38mm;
+            height: 38mm;
             padding: 3mm;
             background: white;
             border: 3px solid #b40059;
@@ -179,140 +168,95 @@
 
         /* Footer */
         .footer {
-            border-top: 3px solid #ff4d6d;
             text-align: center;
-            margin-top: 8mm;
-            padding-top: 4mm;
-            font-size: 12px;
+            border-top: 3px solid #ff4d6d;
+            margin-top: 10mm;
+            padding-top: 5mm;
+            font-size: 13px;
             color: #333;
-            position: relative;
-            z-index: 1;
         }
 
         .footer strong {
             color: #b40059;
-            font-weight: bold;
-        }
-
-        /* Decorative Corners */
-        .corner {
-            position: absolute;
-            width: 20mm;
-            height: 20mm;
-            border: 3px solid #ff4d6d;
-            z-index: 0;
-        }
-
-        .corner.top-left {
-            top: 0;
-            left: 0;
-            border-right: none;
-            border-bottom: none;
-            border-top-left-radius: 8px;
-        }
-
-        .corner.top-right {
-            top: 0;
-            right: 0;
-            border-left: none;
-            border-bottom: none;
-            border-top-right-radius: 8px;
-        }
-
-        .corner.bottom-left {
-            bottom: 0;
-            left: 0;
-            border-right: none;
-            border-top: none;
-            border-bottom-left-radius: 8px;
-        }
-
-        .corner.bottom-right {
-            bottom: 0;
-            right: 0;
-            border-left: none;
-            border-top: none;
-            border-bottom-right-radius: 8px;
         }
     </style>
 </head>
+
 <body>
-    <div class="page-container">
-        <div class="card">
-            <!-- Decorative Corners -->
-            <div class="corner top-left"></div>
-            <div class="corner top-right"></div>
-            <div class="corner bottom-left"></div>
-            <div class="corner bottom-right"></div>
 
-            <!-- Watermark -->
-            <img src="{{ public_path('assets/bpsc-logo.png') }}" class="watermark" alt="Watermark">
+    <div class="card page-container">
 
-            <!-- Header -->
-            <div class="header">
-                <img src="{{ public_path('assets/bpsc-logo.png') }}" alt="Logo">
-                <div class="header-content">
-                    <h1>বসুন্ধরা পাবলিক স্কুল এন্ড কলেজ<br>ছবি আঁকা প্রতিযোগিতা</h1>
-                    <p>বিষয়: মুক্তিযুদ্ধ ও জুলাই গণ-অভ্যুত্থান</p>
-                </div>
-            </div>
+        <!-- Watermark -->
+        <img src="{{ public_path('assets/bpsc-logo-no-text.png') }}" class="watermark" />
 
-            <!-- Title -->
-            <div class="title">ADMIT CARD</div>
+        <!-- Header -->
+        <div class="header">
+            <img src="{{ public_path('assets/bpsc-logo.png') }}">
+            <h1>বসুন্ধরা পাবলিক স্কুল এন্ড কলেজ<br>ছবি আঁকা প্রতিযোগিতা - ২০২৫</h1>
+            <p>বিষয়: মুক্তিযুদ্ধ ও জুলাই গণ-অভ্যুত্থান</p>
+        </div>
 
-            <!-- Content -->
-            <div class="content-row">
-                <div class="info-box">
-                    <table>
+        <!-- Title -->
+        <div class="title">এডমিট কার্ড</div>
+
+        <!-- Main Content -->
+        <div class="content-row">
+
+            <div class="info-box">
+                <table>
+                    <tr>
+                        <td class="label">রেজিস্ট্রেশন নম্বর:</td>
+                        <td class="value">{{ $registration->registration_id }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">শিক্ষার্থীর নাম:</td>
+                        <td class="value">{{ $registration->name }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">শ্রেণী:</td>
+                        <td class="value">{{ $registration->grade }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">অভিভাবকের নাম:</td>
+                        <td class="value">{{ $registration->parents_name }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">অভিভাবকের ফোন:</td>
+                        <td class="value">{{ $registration->parents_phone }}</td>
+                    </tr>
+                    @if ($registration->email)
                         <tr>
-                            <td class="label">Registration ID:</td>
-                            <td class="value">{{ $registration->registration_id }}</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Student Name:</td>
-                            <td class="value">{{ $registration->name }}</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Class / Grade:</td>
-                            <td class="value">{{ $registration->grade }}</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Parent's Name:</td>
-                            <td class="value">{{ $registration->parents_name }}</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Parent's Phone:</td>
-                            <td class="value">{{ $registration->parents_phone }}</td>
-                        </tr>
-                        @if ($registration->email)
-                        <tr>
-                            <td class="label">Email:</td>
+                            <td class="label">ইমেল:</td>
                             <td class="value">{{ $registration->email }}</td>
                         </tr>
-                        @endif
-                        <tr>
-                            <td class="label">School / Institute:</td>
-                            <td class="value">{{ $registration->school }}</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Address:</td>
-                            <td class="value">{{ $registration->home_address }}</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="qr-box">
-                    <strong>SCAN TO VERIFY</strong>
-                    <img src="data:image/png;base64,{{ $qrCode }}" alt="QR Code">
-                </div>
+                    @endif
+                    <tr>
+                        <td class="label">বিদ্যালয়:</td>
+                        <td class="value">{{ $registration->school }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">ঠিকানা:</td>
+                        <td class="value">{{ $registration->home_address }}</td>
+                    </tr>
+                </table>
             </div>
 
-            <!-- Footer -->
-            <div class="footer">
-                Competition Date: <strong>১২ ডিসেম্বর ২০২৫</strong> • Time: <strong>10:00 AM</strong><br>
-                Venue: <strong>বসুন্ধরা পাবলিক স্কুল এন্ড কলেজ প্লট ০২, ব্লক এন, বসুন্ধরা আবাসিক এলাকা, ঢাকা ১২২৯</strong>
-            </div>
+            <div class="qr-box">
+                <strong>স্ক্যান করে যাচাই করুন</strong>
+                <img
+                    src="data:image/png;base64,{{ $qrCode }}
         </div>
+
     </div>
+
+    <!-- Footer -->
+    <div class="footer">
+                প্রতিযোগিতা: <strong>১২ ডিসেম্বর ২০২৫</strong> • সময়: <strong>সকাল ১০টা</strong><br>
+                স্থান: <strong>বসুন্ধরা পাবলিক স্কুল এন্ড কলেজ, বসুন্ধরা আবাসিক এলাকা, ঢাকা</strong>
+            </div>
+
+        </div>
+
 </body>
+
 </html>

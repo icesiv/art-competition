@@ -8,7 +8,11 @@ use App\Http\Controllers\AdminController;
 Route::get('/', [RegistrationController::class, 'index'])->name('registration.index');
 Route::post('/register', [RegistrationController::class, 'store'])->name('registration.store');
 Route::post('/download', [RegistrationController::class, 'download'])->name('registration.download');
-Route::get('/download/{registrationId}/{phone}', [RegistrationController::class, 'downloadDirect'])->name('registration.download.direct');
+
+Route::get('/admit-card/view/{registrationId}/{phone}', [RegistrationController::class, 'viewAdmitCard'])
+     ->name('admit-card.view');
+
+
 
 // Admin routes
 Route::prefix('admin')->group(function () {

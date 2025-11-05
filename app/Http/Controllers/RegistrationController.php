@@ -50,7 +50,7 @@ class RegistrationController extends Controller
             return back()->with('error', 'রেজিস্ট্রেশন আইডি এবং ফোন নম্বর মিলছে না!');
         }
 
-        return $this->generatePDF($registration);
+        return $this->viewAdmitCard($request->registration_id,$request->parents_phone);
     }
 
     public function downloadDirect($registrationId, $phone)
@@ -63,17 +63,23 @@ class RegistrationController extends Controller
             abort(404);
         }
 
-        return $this->generatePDF($registration);
+return $this->viewAdmitCard($registration->registration_id, $phone);
     }
 
-    // $qrCode = QrCode::format('svg')->size(200)->generate($registration->registration_id);
-private function generatePDF($registration)
-{
-   $qrCode = base64_encode(QrCode::format('png')->size(200)->generate($registration->registration_id));
-
-    $pdf = \PDF::loadView('registration.admit-card', compact('registration', 'qrCode'))
-               ->setPaper('a4', 'landscape');
+ public function viewAdmitCard($registrationId, $phone)
+    {
+        $qrCode = base64_encode(QrCode::format('png')->size(200)->generate($registrationId));
+        // $qrCode = QrCode::format('svg')->size(200)->generate($registrationId);
     
-    return $pdf->download('Admit-'.$registration->registration_id.'.pdf');
-}
+        // Find registration matching both ID and phone
+        $registration = Registration::where('registration_id', $registrationId)
+            ->where('parents_phone', $phone)
+            ->first();
+
+        if (!$registration) {
+            abort(404, 'Registration not found or phone does not match.');
+        }
+
+        return view('registration.admit-card-html', compact('registration', 'qrCode'));
+    }
 }

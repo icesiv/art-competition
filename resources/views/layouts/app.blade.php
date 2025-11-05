@@ -51,7 +51,7 @@
                 <div class="hidden md:flex items-center space-x-4">
                     <button onclick="openDownloadModal()"
                         class="bg-green-500 text-white px-4 py-2 rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all font-semibold">
-                        প্রবেশপত্র ডাউনলোড
+                        প্রবেশপত্র
                     </button>
                 </div>
 
@@ -70,7 +70,7 @@
             <div class="px-4 py-3 space-y-2">
                 <button onclick="openDownloadModal()"
                     class="w-full text-left bg-gradient-to-r from-green-500 to-teal-500 text-white px-4 py-2 rounded-lg hover:shadow-lg transition-all font-semibold">
-                    প্রবেশপত্র ডাউনলোড
+                    প্রবেশপত্র
                 </button>
             </div>
         </div>
@@ -82,7 +82,7 @@
         <div
             class="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto transform transition-all animate-slideUp">
             <div class="sticky top-0 bg-white border-b px-6 py-4 flex justify-between items-center rounded-t-2xl">
-                <h2 class="text-2xl font-bold text-primary">📄 প্রবেশপত্র ডাউনলোড</h2>
+                <h2 class="text-2xl font-bold text-primary">প্রবেশপত্র</h2>
                 <button onclick="closeDownloadModal()"
                     class="text-gray-400 hover:text-gray-600 text-3xl leading-none transition-colors">
                     &times;
@@ -113,7 +113,7 @@
 
                 <button type="submit"
                     class="w-full bg-gradient-to-r from-green-500 to-teal-500 text-white px-6 py-3 rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all font-semibold text-lg">
-                    ডাউনলোড করুন
+                    প্রবেশপত্র দেখুন
                 </button>
             </form>
         </div>

@@ -22,9 +22,10 @@
 
                     @if (session('registration_id') && session('parents_phone'))
                         <div class="mt-4">
-                            <a href="{{ route('registration.download.direct', ['registrationId' => session('registration_id'), 'phone' => session('parents_phone')]) }}"
-                                class="inline-block bg-gradient-to-r from-green-500 to-teal-500 text-white px-6 py-3 rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all font-semibold">
-                                এখনই প্রবেশপত্র ডাউনলোড করুন
+                            <a class="inline-block bg-gradient-to-r from-green-500 to-teal-500 text-white px-6 py-3 rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all font-semibold"
+                                href="{{ route('admit-card.view', ['registrationId' => session('registration_id'), 'phone' => session('parents_phone')]) }}"
+                                target="_blank" class="btn btn-primary">
+                                প্রবেশপত্র দেখুন
                             </a>
                         </div>
                     @endif
