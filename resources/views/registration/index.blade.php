@@ -24,7 +24,7 @@
                         <div class="mt-4">
                             <a href="{{ route('registration.download.direct', ['registrationId' => session('registration_id'), 'phone' => session('parents_phone')]) }}"
                                 class="inline-block bg-gradient-to-r from-green-500 to-teal-500 text-white px-6 py-3 rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all font-semibold">
-                                📥 এখনই প্রবেশপত্র ডাউনলোড করুন
+                                এখনই প্রবেশপত্র ডাউনলোড করুন
                             </a>
                         </div>
                     @endif
@@ -75,7 +75,8 @@
 
     <!-- Registration Form Card -->
     <div class="bg-white rounded-2xl shadow-2xl p-8 mb-8">
-        <div class="w-full flex flex-col md:flex-row items-center justify-between mb-4 gap-4 md:gap-0 border-b-2 border-primary pb-3">
+        <div
+            class="w-full flex flex-col md:flex-row items-center justify-between mb-4 gap-4 md:gap-0 border-b-2 border-primary pb-3">
 
             <!-- Mobile: Logos together -->
             <div class="flex md:hidden w-full justify-between">
@@ -155,7 +156,9 @@
                     <input type="tel" id="parents_phone" name="parents_phone" pattern="[0-9]{11}"
                         value="{{ old('parents_phone') }}"
                         class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none transition-colors @error('parents_phone') border-red-500 @enderror"
-                        placeholder="01xxxxxxxxx" required>
+                        placeholder="01xxxxxxxxx" required
+                        oninvalid="this.setCustomValidity('সঠিক ১১ সংখ্যার ফোন নম্বর লিখুন (০১XXXXXXXXX)')"
+                        oninput="this.setCustomValidity('')">
                     @error('parents_phone')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
@@ -168,7 +171,9 @@
                     <input type="tel" id="another_phone" name="another_phone" pattern="[0-9]{11}"
                         value="{{ old('another_phone') }}"
                         class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none transition-colors"
-                        placeholder="01xxxxxxxxx">
+                        placeholder="01xxxxxxxxx"
+                        oninvalid="this.setCustomValidity('সঠিক ১১ সংখ্যার ফোন নম্বর লিখুন (০১XXXXXXXXX)')"
+                        oninput="this.setCustomValidity('')">
                 </div>
             </div>
 
