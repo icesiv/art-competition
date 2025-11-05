@@ -66,7 +66,7 @@
                 <div class="flex items-center justify-between">
                     <div class="flex-1">
                         <p class="text-purple-100 text-sm font-medium mb-2 uppercase tracking-wide">সর্বশেষ আইডি</p>
-                        <h3 class="text-xl font-bold mb-1 truncate">{{ $registrations->first()->registration_id ?? 'N/A' }}</h3>
+                        <h3 class="text-lg font-bold mb-1 truncate">{{ $registrations->first()->registration_id ?? 'N/A' }}</h3>
                         <p class="text-purple-200 text-xs">{{ $registrations->first() ? $registrations->first()->name : 'কোনো তথ্য নেই' }}</p>
                     </div>
                     <div class="bg-white/20 rounded-full p-4 backdrop-blur-sm">
@@ -84,7 +84,7 @@
                 <svg class="w-6 h-6 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
-                তথ্য রপ্তানি করুন
+                Download রেজিস্ট্রেশন ডেটা
             </h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <a href="{{ route('admin.export.csv') }}" class="group bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-6 py-4 rounded-xl hover:shadow-xl transform hover:-translate-y-1 transition-all font-semibold text-center flex items-center justify-center space-x-3">
@@ -129,8 +129,6 @@
                         <th class="px-4 md:px-6 py-4 text-left text-xs md:text-sm font-bold text-primary uppercase tracking-wider whitespace-nowrap hidden md:table-cell">শ্রেণী</th>
                         <th class="px-4 md:px-6 py-4 text-left text-xs md:text-sm font-bold text-primary uppercase tracking-wider whitespace-nowrap hidden lg:table-cell">অভিভাবক</th>
                         <th class="px-4 md:px-6 py-4 text-left text-xs md:text-sm font-bold text-primary uppercase tracking-wider whitespace-nowrap">ফোন</th>
-                        <th class="px-4 md:px-6 py-4 text-left text-xs md:text-sm font-bold text-primary uppercase tracking-wider whitespace-nowrap hidden xl:table-cell">স্কুল</th>
-                        <th class="px-4 md:px-6 py-4 text-left text-xs md:text-sm font-bold text-primary uppercase tracking-wider whitespace-nowrap">তারিখ</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
@@ -153,20 +151,6 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                                 </svg>
                                 <span>{{ $reg->parents_phone }}</span>
-                            </div>
-                        </td>
-                        <td class="px-4 md:px-6 py-4 text-gray-600 text-sm hidden xl:table-cell">
-                            <div class="max-w-xs truncate" title="{{ $reg->school }}">
-                                {{ $reg->school }}
-                            </div>
-                        </td>
-                        <td class="px-4 md:px-6 py-4 whitespace-nowrap text-gray-600 text-sm">
-                            <div class="flex items-center space-x-2">
-                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                                <span class="hidden sm:inline">{{ $reg->created_at->format('d M Y') }}</span>
-                                <span class="sm:hidden">{{ $reg->created_at->format('d/m') }}</span>
                             </div>
                         </td>
                     </tr>

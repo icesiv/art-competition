@@ -66,10 +66,10 @@ class RegistrationController extends Controller
         return $this->generatePDF($registration);
     }
 
+    // $qrCode = QrCode::format('svg')->size(200)->generate($registration->registration_id);
 private function generatePDF($registration)
 {
-//    $qrCode = base64_encode(QrCode::format('png')->size(200)->generate($registration->registration_id));
-   $qrCode = QrCode::format('svg')->size(200)->generate($registration->registration_id);
+   $qrCode = base64_encode(QrCode::format('png')->size(200)->generate($registration->registration_id));
 
     $pdf = \PDF::loadView('registration.admit-card', compact('registration', 'qrCode'))
                ->setPaper('a4', 'landscape');

@@ -32,7 +32,7 @@ class Registration extends Model
     public static function generateRegistrationId()
     {
         do {
-            $id = 'BG-' . str_pad(random_int(0, 99999999), 8, '0', STR_PAD_LEFT);
+            $id = 'ON-' . str_pad(random_int(0, 99999999), 8, '0', STR_PAD_LEFT);
         } while (self::where('registration_id', $id)->exists());
 
         return $id;

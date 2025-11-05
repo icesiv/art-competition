@@ -17,17 +17,17 @@ class RegistrationsExport implements FromCollection, WithHeadings, WithMapping
     public function headings(): array
     {
         return [
-            'আইডি',
-            'রেজিস্ট্রেশন আইডি',
-            'নাম',
-            'শ্রেণী',
-            'অভিভাবকের নাম',
-            'অভিভাবকের ফোন',
-            'ইমেইল',
-            'ঠিকানা',
-            'স্কুল/প্রতিষ্ঠান',
-            'অন্য ফোন',
-            'তারিখ'
+            'ID',
+            'Registration ID',
+            'Name',
+            'Class',
+            'Parent\'s Name',
+            'Parent\'s Phone',
+            'Email',
+            'Address',
+            'School/Institution',
+            'Alternate Phone',
+            'Date'
         ];
     }
 
