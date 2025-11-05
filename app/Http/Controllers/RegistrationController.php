@@ -50,7 +50,7 @@ class RegistrationController extends Controller
             return back()->with('error', 'রেজিস্ট্রেশন আইডি এবং ফোন নম্বর মিলছে না!');
         }
 
-        return $this->viewAdmitCard($request->registration_id,$request->parents_phone);
+        return $this->viewAdmitCard($request->registration_id, $request->parents_phone);
     }
 
     public function downloadDirect($registrationId, $phone)
@@ -63,15 +63,11 @@ class RegistrationController extends Controller
             abort(404);
         }
 
-return $this->viewAdmitCard($registration->registration_id, $phone);
+        return $this->viewAdmitCard($registration->registration_id, $phone);
     }
 
- public function viewAdmitCard($registrationId, $phone)
+    public function viewAdmitCard($registrationId, $phone)
     {
-        $qrCode = base64_encode(QrCode::format('png')->size(200)->generate($registrationId));
-        // $qrCode = QrCode::format('svg')->size(200)->generate($registrationId);
-    
-        // Find registration matching both ID and phone
         $registration = Registration::where('registration_id', $registrationId)
             ->where('parents_phone', $phone)
             ->first();
@@ -79,6 +75,14 @@ return $this->viewAdmitCard($registration->registration_id, $phone);
         if (!$registration) {
             abort(404, 'Registration not found or phone does not match.');
         }
+
+        $qrText = "ID: {$registrationId}\n" .
+            "Phone: {$phone}\n" .
+            "Parent: {$registration->parents_name}\n";
+
+        $qrCode = base64_encode(
+            QrCode::format('png')->size(200)->generate($qrText)
+        );
 
         return view('registration.admit-card-html', compact('registration', 'qrCode'));
     }
