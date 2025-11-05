@@ -80,9 +80,13 @@ class RegistrationController extends Controller
             "Phone: {$phone}\n" .
             "Parent: {$registration->parents_name}\n";
 
-        $qrCode = base64_encode(
-            QrCode::format('png')->size(200)->generate($qrText)
-        );
+$qrCode = base64_encode(
+    QrCode::format('png')
+        ->encoding('UTF-8')
+        ->size(200)
+        ->errorCorrection('H')
+        ->generate($qrText)
+);
 
         return view('registration.admit-card-html', compact('registration', 'qrCode'));
     }
