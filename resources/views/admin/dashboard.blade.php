@@ -3,97 +3,48 @@
 @section('title', 'অ্যাডমিন ড্যাশবোর্ড')
 
 @section('content')
-    <!-- Header with Logout -->
-    <div
-        class="bg-amber-950 flex flex-col md:flex-row justify-between items-center md:items-center rounded-2xl shadow-2xl p-6 md:p-8 mb-8 gap-4">
-        <div class="">
-            <h1 class="text-3xl md:text-4xl font-bold text-white flex items-center">
-                <span class="text-4xl mr-3">📊</span>
-                অ্যাডমিন ড্যাশবোর্ড
-            </h1>
-        </div>
+   <!-- Header -->
+    <div class="bg-amber-950 flex flex-col md:flex-row justify-between items-center rounded-2xl shadow-xl p-6 md:p-8 mb-8 gap-4">
+        <h1 class="text-3xl md:text-4xl font-bold text-white flex items-center">
+            <span class="text-4xl mr-3">📊</span> অ্যাডমিন ড্যাশবোর্ড
+        </h1>
+
         <a href="{{ route('admin.logout') }}"
-            class="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-xl transition-all font-semibold flex items-center space-x-2 shadow-lg hover:shadow-xl">
+           class="bg-white/20 hover:bg-white/40 transition-all text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 shadow-lg">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
             </svg>
-            <span>লগআউট</span>
+            লগআউট
         </a>
     </div>
 
-    <!-- Statistics Card -->
-    <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8 mb-8">
-        <h2 class="text-2xl font-bold text-primary mb-6 pb-3 border-b-4 border-primary flex items-center">
-            <svg class="w-7 h-7 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <!-- Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+
+        <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-xl p-6 shadow hover:scale-[1.02] transition">
+            <p class="text-sm opacity-80 uppercase">মোট রেজিস্ট্রেশন</p>
+            <h2 class="text-4xl font-bold my-2">{{ $totalRegistrations }}</h2>
+            <p class="text-xs opacity-80">সর্বমোট অংশগ্রহণকারী</p>
+        </div>
+
+        <div class="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-xl p-6 shadow hover:scale-[1.02] transition">
+            <p class="text-sm opacity-80 uppercase">আজকের রেজিস্ট্রেশন</p>
+            <h2 class="text-4xl font-bold my-2">
+                {{ $registrations->where('created_at', '>=', today())->count() }}
+            </h2>
+            <p class="text-xs opacity-80">{{ now()->format('d F Y') }}</p>
+        </div>
+
+        <a href="{{ route('admin.export.excel') }}"
+           class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-xl p-6 shadow hover:scale-[1.02] flex flex-col justify-center items-center transition">
+            <svg class="w-10 h-10 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
-                </path>
+                      d="M12 16v-8m0 0l-3 3m3-3l3 3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
             </svg>
-            পরিসংখ্যান
-        </h2>
+            <span class="text-lg font-semibold">এক্সেল ডাউনলোড</span>
+        </a>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            <!-- Total Registrations -->
-            <div
-                class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg transform hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer">
-                <div class="flex items-center justify-between">
-                    <div class="flex-1">
-                        <p class="text-blue-100 text-sm font-medium mb-2 uppercase tracking-wide">মোট রেজিস্ট্রেশন</p>
-                        <h3 class="text-5xl font-bold mb-1">{{ $totalRegistrations }}</h3>
-                        <p class="text-blue-200 text-xs">সর্বমোট অংশগ্রহণকারী</p>
-                    </div>
-                    <div class="bg-white/20 rounded-full p-4 backdrop-blur-sm">
-                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
-                            </path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Today's Registrations -->
-            <div
-                class="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg transform hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer">
-                <div class="flex items-center justify-between">
-                    <div class="flex-1">
-                        <p class="text-green-100 text-sm font-medium mb-2 uppercase tracking-wide">আজকের রেজিস্ট্রেশন</p>
-                        <h3 class="text-5xl font-bold mb-1">
-                            {{ $registrations->where('created_at', '>=', today())->count() }}</h3>
-                        <p class="text-green-200 text-xs">{{ now()->format('d F Y') }}</p>
-                    </div>
-                    <div class="bg-white/20 rounded-full p-4 backdrop-blur-sm">
-                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Export Section -->
-        <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-6 border-2 border-gray-200">
-            <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
-                <svg class="w-6 h-6 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                    </path>
-                </svg>
-                রেজিস্ট্রেশন ডেটা
-            </h3>
-            <a href="{{ route('admin.export.excel') }}"
-                class="group bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-4 rounded-xl hover:shadow-xl transform hover:-translate-y-1 transition-all font-semibold text-center flex items-center justify-center space-x-3">
-                <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                    </path>
-                </svg>
-                <span>ডাউনলোড</span>
-            </a>
-        </div>
     </div>
 
     <!-- Registrations Table -->
