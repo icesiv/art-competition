@@ -59,21 +59,30 @@ class AdminController extends Controller
         // Add BOM for UTF-8
         fprintf($handle, chr(0xEF) . chr(0xBB) . chr(0xBF));
 
-        fputcsv($handle, ['ID', 'Registration ID', 'Name', 'Class', 'Parents Name', 'Parents Phone', 'Email', 'Address', 'School/Institution', 'Other Phone', 'Date']);
+        fputcsv($handle, [
+            'Registration ID', 'Name', 'Class','Category', 
+           'Parents Name', 'Parents Phone', 'Email', 'Address', 
+           'School/Institution', 'Other Phone', 'Date'
+        ]);
 
         foreach ($registrations as $reg) {
+               $grade = $reg->grade;
+
+        $category1 = ['তৃতীয় শ্রেণি', 'চতুর্থ শ্রেণি', 'পঞ্চম শ্রেণি', 'ষষ্ঠ শ্রেণি'];
+        $category = in_array($grade, $category1) ? 'ক্যাটাগরী-১' : 'ক্যাটাগরী-২';
+
             fputcsv($handle, [
-                $reg->id,
                 $reg->registration_id,
                 $reg->name,
-                $reg->grade,
+                $grade,
+                $category,
                 $reg->parents_name,
                 $reg->parents_phone,
                 $reg->email,
                 $reg->home_address,
                 $reg->school,
                 $reg->another_phone,
-                $reg->created_at->format('Y-m-d H:i:s')
+                $reg->created_at->format("d M Y h:i A")
             ]);
         }
 
@@ -87,6 +96,6 @@ class AdminController extends Controller
             abort(403);
         }
 
-        return Excel::download(new RegistrationsExport, 'registrations_' . date('Y-m-d') . '.xlsx', ExcelType::XLSX);
+        return Excel::download(new RegistrationsExport, 'registrations_' . date('d-M') . '.xlsx', ExcelType::XLSX);
     }
 }
