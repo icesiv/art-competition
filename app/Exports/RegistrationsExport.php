@@ -50,7 +50,7 @@ class RegistrationsExport implements FromCollection, WithHeadings, WithMapping
             $registration->home_address,
             $registration->school,
             $registration->another_phone,
-            $registration->created_at->format('d M Y h:i A');
+            $registration->created_at->format("d M Y h:i A")
         ];
     }
 }
