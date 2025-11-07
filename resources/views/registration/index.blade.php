@@ -80,13 +80,14 @@
             class="w-full flex flex-col md:flex-row items-center justify-between mb-4 gap-4 md:gap-0 border-b-2 border-primary pb-3">
 
             <!-- Mobile: Logos together -->
-            <div class="flex md:hidden w-full justify-between">
-                <img src="assets/art-logo-new.png" class="w-18 h-auto" alt="Art Logo">
-                <img src="assets/bpsc-logo.png" class="w-20 h-auto" alt="BPSC Logo">
-            </div>
+<div class="flex md:hidden w-full justify-between items-center">
+    <img src="assets/art-logo-new.png" class="w-20 h-auto" alt="Art Logo">
+    <img src="assets/bpsc-logo.png" class="w-16 h-auto" alt="BPSC Logo">
+</div>
 
-            <!-- Desktop: Left Logo -->
-            <img src="assets/art-logo-new.png" class="hidden md:block w-28 h-auto" alt="Art Logo">
+
+              <!-- Desktop: Left Logo -->
+<img src="assets/art-logo-new.png" class="hidden md:block w-32 h-auto" alt="Art Logo">
 
             <!-- Title -->
             <div class="text-center md:mx-4">
@@ -99,7 +100,7 @@
             </div>
 
             <!-- Desktop: Right Logo -->
-            <img src="assets/bpsc-logo.png" class="hidden md:block w-20 h-auto" alt="BPSC Logo">
+<img src="assets/bpsc-logo.png" class="hidden md:block w-24 h-auto" alt="BPSC Logo">
         </div>
 
 
