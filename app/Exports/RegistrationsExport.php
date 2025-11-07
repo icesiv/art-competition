@@ -21,6 +21,7 @@ class RegistrationsExport implements FromCollection, WithHeadings, WithMapping
             'Registration ID',
             'Name',
             'Class',
+            'Category',        // ✅ Added new column heading
             'Parent\'s Name',
             'Parent\'s Phone',
             'Email',
@@ -33,11 +34,18 @@ class RegistrationsExport implements FromCollection, WithHeadings, WithMapping
 
     public function map($registration): array
     {
+        // ✅ Determine Category based on grade
+        $grade = $registration->grade;
+
+        $category1 = ['তৃতীয় শ্রেণি', 'চতুর্থ শ্রেণি', 'পঞ্চম শ্রেণি', 'ষষ্ঠ শ্রেণি'];
+        $category = in_array($grade, $category1) ? 'ক্যাটাগরী-১' : 'ক্যাটাগরী-২';
+
         return [
             $registration->id,
             $registration->registration_id,
             $registration->name,
             $registration->grade,
+            $category,  // ✅ Output category
             $registration->parents_name,
             $registration->parents_phone,
             $registration->email,

@@ -80,14 +80,14 @@
             class="w-full flex flex-col md:flex-row items-center justify-between mb-4 gap-4 md:gap-0 border-b-2 border-primary pb-3">
 
             <!-- Mobile: Logos together -->
-<div class="flex md:hidden w-full justify-between items-center">
-    <img src="assets/art-logo-new.png" class="w-20 h-auto" alt="Art Logo">
-    <img src="assets/bpsc-logo.png" class="w-16 h-auto" alt="BPSC Logo">
-</div>
+            <div class="flex md:hidden w-full justify-between items-center">
+                <img src="assets/art-logo-new.png" class="w-20 h-auto" alt="Art Logo">
+                <img src="assets/bpsc-logo.png" class="w-16 h-auto" alt="BPSC Logo">
+            </div>
 
 
-              <!-- Desktop: Left Logo -->
-<img src="assets/art-logo-new.png" class="hidden md:block w-32 h-auto" alt="Art Logo">
+            <!-- Desktop: Left Logo -->
+            <img src="assets/art-logo-new.png" class="hidden md:block w-32 h-auto" alt="Art Logo">
 
             <!-- Title -->
             <div class="text-center md:mx-4">
@@ -100,7 +100,7 @@
             </div>
 
             <!-- Desktop: Right Logo -->
-<img src="assets/bpsc-logo.png" class="hidden md:block w-24 h-auto" alt="BPSC Logo">
+            <img src="assets/bpsc-logo.png" class="hidden md:block w-24 h-auto" alt="BPSC Logo">
         </div>
 
 
@@ -123,50 +123,60 @@
                 @enderror
             </div>
 
- <!-- Grade + Category -->
-<div>
-    <label class="block text-gray-700 font-semibold mb-2">
-        শ্রেণী <span class="text-red-500">*</span>
-    </label>
+            <!-- Grade + Category -->
+            <div>
+                <label class="block text-gray-700 font-semibold mb-2">
+                    শ্রেণী <span class="text-red-500">*</span>
+                </label>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 relative">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 relative">
 
-        <!-- Grade Select -->
-        <div class="relative">
-            <select id="grade" name="grade"
-                class="w-full px-4 py-3 pr-10 border-2 border-gray-200 rounded-lg appearance-none
+                    <!-- Grade Select -->
+                    <div class="relative">
+                        <select id="grade" name="grade"
+                            class="w-full px-4 py-3 pr-10 border-2 border-gray-200 rounded-lg appearance-none
                        focus:border-primary focus:outline-none transition-colors leading-[2.2rem]
-                       @error('grade') border-red-500 @enderror" required>
+                       @error('grade') border-red-500 @enderror"
+                            required>
 
-                <option value="তৃতীয় শ্রেণি"   {{ old('grade') == 'তৃতীয় শ্রেণি' ? 'selected' : '' }}>তৃতীয় শ্রেণি</option>
-                <option value="চতুর্থ শ্রেণি"   {{ old('grade') == 'চতুর্থ শ্রেণি' ? 'selected' : '' }}>চতুর্থ শ্রেণি</option>
-                <option value="পঞ্চম শ্রেণি"    {{ old('grade') == 'পঞ্চম শ্রেণি' ? 'selected' : '' }}>পঞ্চম শ্রেণি</option>
-                <option value="ষষ্ঠ শ্রেণি"     {{ old('grade') == 'ষষ্ঠ শ্রেণি' ? 'selected' : '' }}>ষষ্ঠ শ্রেণি</option>
-                <option value="সপ্তম শ্রেণি"    {{ old('grade') == 'সপ্তম শ্রেণি' ? 'selected' : '' }}>সপ্তম শ্রেণি</option>
-                <option value="অষ্টম শ্রেণি"    {{ old('grade') == 'অষ্টম শ্রেণি' ? 'selected' : '' }}>অষ্টম শ্রেণি</option>
-                <option value="নবম শ্রেণি"     {{ old('grade') == 'নবম শ্রেণি' ? 'selected' : '' }}>নবম শ্রেণি</option>
-                <option value="দশম শ্রেণি"     {{ old('grade') == 'দশম শ্রেণি' ? 'selected' : '' }}>দশম শ্রেণি</option>
-            </select>
+                            <option value="তৃতীয় শ্রেণি" {{ old('grade') == 'তৃতীয় শ্রেণি' ? 'selected' : '' }}>তৃতীয়
+                                শ্রেণি</option>
+                            <option value="চতুর্থ শ্রেণি" {{ old('grade') == 'চতুর্থ শ্রেণি' ? 'selected' : '' }}>চতুর্থ
+                                শ্রেণি</option>
+                            <option value="পঞ্চম শ্রেণি" {{ old('grade') == 'পঞ্চম শ্রেণি' ? 'selected' : '' }}>পঞ্চম
+                                শ্রেণি</option>
+                            <option value="ষষ্ঠ শ্রেণি" {{ old('grade') == 'ষষ্ঠ শ্রেণি' ? 'selected' : '' }}>ষষ্ঠ শ্রেণি
+                            </option>
+                            <option value="সপ্তম শ্রেণি" {{ old('grade') == 'সপ্তম শ্রেণি' ? 'selected' : '' }}>সপ্তম
+                                শ্রেণি</option>
+                            <option value="অষ্টম শ্রেণি" {{ old('grade') == 'অষ্টম শ্রেণি' ? 'selected' : '' }}>অষ্টম
+                                শ্রেণি</option>
+                            <option value="নবম শ্রেণি" {{ old('grade') == 'নবম শ্রেণি' ? 'selected' : '' }}>নবম শ্রেণি
+                            </option>
+                            <option value="দশম শ্রেণি" {{ old('grade') == 'দশম শ্রেণি' ? 'selected' : '' }}>দশম শ্রেণি
+                            </option>
+                        </select>
 
-            <!-- Custom Arrow -->
-            <span class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
-                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path d="M6 9l6 6 6-6"/>
-                </svg>
-            </span>
-        </div>
+                        <!-- Custom Arrow -->
+                        <span class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg>
+                        </span>
+                    </div>
 
-        <!-- Category Display -->
-        <input type="text" id="grade_category"
-            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg bg-gray-100 text-gray-700"
-            value="ক্যাটাগরী-১" placeholder="ক্যাটাগরী-১" disabled>
+                    <!-- Category Display -->
+                    <input type="text" id="grade_category"
+                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg bg-gray-100 text-gray-700"
+                        value="ক্যাটাগরী-১" placeholder="ক্যাটাগরী-১" disabled>
 
-    </div>
+                </div>
 
-    @error('grade')
-        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-    @enderror
-</div>
+                @error('grade')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
 
 
@@ -258,22 +268,22 @@
     </div>
 
     <!-- Script -->
-<script>
-    document.getElementById('grade').addEventListener('change', function () {
-        const value = this.value;
-        const categoryField = document.getElementById('grade_category');
+    <script>
+        document.getElementById('grade').addEventListener('change', function() {
+            const value = this.value;
+            const categoryField = document.getElementById('grade_category');
 
-        const cat1 = ["তৃতীয় শ্রেণি", "চতুর্থ শ্রেণি", "পঞ্চম শ্রেণি", "ষষ্ঠ শ্রেণি"];
+            const cat1 = ["তৃতীয় শ্রেণি", "চতুর্থ শ্রেণি", "পঞ্চম শ্রেণি", "ষষ্ঠ শ্রেণি"];
 
-        if (cat1.includes(value)) {
-            categoryField.value = "ক্যাটাগরী-১";
-        } else if (value !== "") {
-            categoryField.value = "ক্যাটাগরী-২";
-        } else {
-            categoryField.value = "";
-        }
-    });
-</script>
+            if (cat1.includes(value)) {
+                categoryField.value = "ক্যাটাগরী-১";
+            } else if (value !== "") {
+                categoryField.value = "ক্যাটাগরী-২";
+            } else {
+                categoryField.value = "";
+            }
+        });
+    </script>
 
     <style>
         @keyframes slideDown {
