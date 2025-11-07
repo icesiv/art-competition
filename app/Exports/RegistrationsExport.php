@@ -11,13 +11,12 @@ class RegistrationsExport implements FromCollection, WithHeadings, WithMapping
 {
     public function collection()
     {
-        return Registration::orderBy('created_at', 'desc')->get();
+        return Registration::orderBy('created_at', 'asc')->get();
     }
 
     public function headings(): array
     {
         return [
-            'ID',
             'Registration ID',
             'Name',
             'Class',
@@ -41,7 +40,6 @@ class RegistrationsExport implements FromCollection, WithHeadings, WithMapping
         $category = in_array($grade, $category1) ? 'ক্যাটাগরী-১' : 'ক্যাটাগরী-২';
 
         return [
-            $registration->id,
             $registration->registration_id,
             $registration->name,
             $registration->grade,
@@ -52,7 +50,7 @@ class RegistrationsExport implements FromCollection, WithHeadings, WithMapping
             $registration->home_address,
             $registration->school,
             $registration->another_phone,
-            $registration->created_at->format('Y-m-d H:i:s')
+            $registration->created_at->format('d M Y h:i A');
         ];
     }
 }

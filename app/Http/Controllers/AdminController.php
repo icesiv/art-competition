@@ -6,6 +6,7 @@ use App\Models\Registration;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\RegistrationsExport;
+use Maatwebsite\Excel\Excel as ExcelType;
 
 class AdminController extends Controller
 {
@@ -19,7 +20,7 @@ class AdminController extends Controller
 
         $registrations = Registration::orderBy('created_at', 'desc')
             ->paginate(50);
-        
+
         $totalRegistrations = Registration::count();
 
         return view('admin.dashboard', compact('registrations', 'totalRegistrations'));
@@ -48,18 +49,18 @@ class AdminController extends Controller
         }
 
         $registrations = Registration::orderBy('created_at', 'desc')->get();
-        
+
         $filename = 'registrations_' . date('Y-m-d') . '.csv';
         $handle = fopen('php://output', 'w');
-        
+
         header('Content-Type: text/csv; charset=utf-8');
         header('Content-Disposition: attachment; filename="' . $filename . '"');
-        
+
         // Add BOM for UTF-8
-        fprintf($handle, chr(0xEF).chr(0xBB).chr(0xBF));
-        
+        fprintf($handle, chr(0xEF) . chr(0xBB) . chr(0xBF));
+
         fputcsv($handle, ['ID', 'Registration ID', 'Name', 'Class', 'Parents Name', 'Parents Phone', 'Email', 'Address', 'School/Institution', 'Other Phone', 'Date']);
-        
+
         foreach ($registrations as $reg) {
             fputcsv($handle, [
                 $reg->id,
@@ -75,7 +76,7 @@ class AdminController extends Controller
                 $reg->created_at->format('Y-m-d H:i:s')
             ]);
         }
-        
+
         fclose($handle);
         exit;
     }
@@ -86,6 +87,6 @@ class AdminController extends Controller
             abort(403);
         }
 
-        return Excel::download(new RegistrationsExport, 'registrations_' . date('Y-m-d') . '.xlsx');
+        return Excel::download(new RegistrationsExport, 'registrations_' . date('Y-m-d') . '.xlsx', ExcelType::XLSX);
     }
 }
