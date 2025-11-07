@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/assets/art-logo.png" type="image/png">
+    <link rel="icon" href="/assets/art-logo-new.png" type="image/png">
     <title>প্রবেশপত্র - {{ $registration->registration_id }}</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 
-    <!-- Bangla Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
-
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Hind Siliguri', sans-serif;
+            font-family: "Tiro Bangla", serif;
             margin: 0;
             padding: 0;
         }
@@ -50,9 +50,10 @@
         }
 
         .header img {
-            width: 100px;
-            height: auto;
+            height: 100%;
+            object-fit: contain;
         }
+
 
         .header div {
             flex: 1;
@@ -131,8 +132,8 @@
             padding: 5px;
         }
 
-        .rules-box{
-   font-size: 14px;
+        .rules-box {
+            font-size: 14px;
         }
 
         .footer {
@@ -151,6 +152,12 @@
             border-radius: 6px;
             font-size: 16px;
             cursor: pointer;
+        }
+
+        .school {
+                 color: red;
+            font-size: 18px;
+            margin-top: 10px; 
         }
 
         /* Hide print button when printing */
@@ -174,12 +181,12 @@
 
         <!-- Header -->
         <div class="header">
-            <img src="/assets/art-logo.png" alt="Logo">
+            <img  width="160px" src="/assets/art-logo-new.png" alt="Logo">
             <div>
                 <h1>বসুন্ধরা পাবলিক স্কুল এন্ড কলেজ<br>ছবি আঁকা প্রতিযোগিতা</h1>
                 <p>বিষয়: মুক্তিযুদ্ধ ও জুলাই গণ-অভ্যুত্থান</p>
             </div>
-            <img src="/assets/bpsc-logo.png" alt="Logo">
+            <img  width="100px" src="/assets/bpsc-logo.png" alt="Logo">
         </div>
 
         <div class="title">প্রবেশপত্র</div>
@@ -196,6 +203,26 @@
                         <td class="value">{{ $registration->name }}</td>
                     </tr>
                     <tr>
+                        <td class="label">শ্রেণী:</td>
+                        <td class="value">
+                            {{ $registration->grade }}
+                            @php
+                                $cat1 = ['তৃতীয় শ্রেণি', 'চতুর্থ শ্রেণি', 'পঞ্চম শ্রেণি', 'ষষ্ঠ শ্রেণি'];
+                            @endphp
+
+                            @if (in_array($registration->grade, $cat1))
+                                <span class="text-gray-200 ml-2">[ ক্যাটাগরী - ১ ]</span>
+                            @else
+                                <span class="text-gray-200 ml-2">[ ক্যাটাগরী - ২ ]</span>
+                            @endif
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">স্কুল / ইনস্টিটিউট:</td>
+                        <td class="value">{{ $registration->school }}</td>
+                    </tr>
+                    <tr>
                         <td class="label">অভিভাবকের নাম:</td>
                         <td class="value">{{ $registration->parents_name }}</td>
                     </tr>
@@ -203,10 +230,6 @@
                         <td class="label">অভিভাবকের ফোন:</td>
                         <td class="value">{{ $registration->parents_phone }}</td>
                     </tr>
-                    <tr>
-                        <td class="label">স্কুল / ইনস্টিটিউট:</td>
-                        <td class="value">{{ $registration->school }}</td>
-                    </tr>                
                 </table>
             </div>
             <div class="qr-box">
@@ -221,13 +244,12 @@
                 <li>প্রবেশপত্রটি অবশ্যই সাথে নিয়ে আসতে হবে।</li>
                 <li>নির্ধারিত সময়ের ৩০ মিনিট আগে উপস্থিত থাকতে হবে।</li>
                 <li>প্রতিযোগীকে ড্রইং শীট/আর্ট পেপার আয়োজকবৃন্দ সরবরাহ করবে।</li>
-                <li>রঙ করার উপকরণ প্রতিযোগী নিজে সাথে আনবে।</li>                
+                <li>রঙ করার উপকরণ প্রতিযোগী নিজে সাথে আনবে।</li>
             </ul>
         </div>
 
         <div class="footer">
-            প্রতিযোগিতা: <strong>১২ ডিসেম্বর ২০২৫</strong> • সময়: <strong>সকাল ১১টা</strong><br>
-            স্থান: <strong>বসুন্ধরা পাবলিক স্কুল এন্ড কলেজ, প্লট ০২, ব্লক এন, বসুন্ধরা আবাসিক এলাকা, ঢাকা ১২২৯</strong>
+            <strong><span class="school">বসুন্ধরা পাবলিক স্কুল এন্ড কলেজ</span><br /> প্লট ০২, ব্লক এন, বসুন্ধরা আবাসিক এলাকা, ঢাকা ১২২৯</strong>
         </div>
     </div>
 

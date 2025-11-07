@@ -42,8 +42,8 @@
                 <!-- Logo/Brand -->
                 <a href="{{ route('registration.index') }}"
                     class="flex items-center space-x-2 text-primary hover:text-secondary transition-colors">
-                    <span class="text-3xl"><img height="30px" width="30px" src="assets/art-logo.png"></span>
-                    <span class="text-xl font-bold hidden sm:block">একাত্তরের মুক্তিযুদ্ধ ও জুলাই গণঅভ্যুত্থান</span>
+                    <span class="text-3xl"><img height="30px" width="30px" src="assets/art-logo-new.png"></span>
+                    <span class="text-xl font-bold hidden  sm:block">রক্তাক্ত একাত্তর থেকে রক্তাক্ত চব্বিশ - সংগ্রামের বাংলাদেশ</span>
                     <span class="text-xl font-bold sm:hidden">Home</span>
                 </a>
 
