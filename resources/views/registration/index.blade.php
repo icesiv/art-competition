@@ -192,7 +192,7 @@
                 @enderror
             </div>
 
-                        <!-- বিশেষ চাহিদাসম্পন্ন ছাত্র-ছাত্রী -->
+            <!-- বিশেষ চাহিদাসম্পন্ন ছাত্র-ছাত্রী -->
             <div class="flex items-center mt-4 ml-2">
                 <input type="checkbox" id="special_needs" name="special_needs" value="1"
                     {{ old('special_needs') ? 'checked' : '' }}

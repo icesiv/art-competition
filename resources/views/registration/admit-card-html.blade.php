@@ -9,9 +9,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&family=Tiro+Bangla:ital@0;1&display=swap"
+        rel="stylesheet">
     <style>
         body {
             font-family: "Tiro Bangla", serif;
@@ -155,9 +157,9 @@
         }
 
         .school {
-                 color: red;
+            color: red;
             font-size: 18px;
-            margin-top: 10px; 
+            margin-top: 10px;
         }
 
         /* Hide print button when printing */
@@ -181,12 +183,12 @@
 
         <!-- Header -->
         <div class="header">
-            <img  width="160px" src="/assets/art-logo-new.png" alt="Logo">
+            <img width="160px" src="/assets/art-logo-new.png" alt="Logo">
             <div>
                 <h1>বসুন্ধরা পাবলিক স্কুল এন্ড কলেজ<br>ছবি আঁকা প্রতিযোগিতা</h1>
                 <p>বিষয়: মুক্তিযুদ্ধ ও জুলাই গণ-অভ্যুত্থান</p>
             </div>
-            <img  width="100px" src="/assets/bpsc-logo.png" alt="Logo">
+            <img width="100px" src="/assets/bpsc-logo.png" alt="Logo">
         </div>
 
         <div class="title">প্রবেশপত্র</div>
@@ -230,6 +232,16 @@
                         <td class="label">অভিভাবকের ফোন:</td>
                         <td class="value">{{ $registration->parents_phone }}</td>
                     </tr>
+
+                    @if ($registration->special_needs)
+                        <tr>
+                            <td class="label" colspan="2" style="color: #b40059; font-weight:bold;">
+                                ** বিশেষ চাহিদাসম্পন্ন ছাত্র-ছাত্রী **
+                            </td>
+                        </tr>
+                    @endif
+
+
                 </table>
             </div>
             <div class="qr-box">
@@ -249,7 +261,8 @@
         </div>
 
         <div class="footer">
-            <strong><span class="school">বসুন্ধরা পাবলিক স্কুল এন্ড কলেজ</span><br /> প্লট ০২, ব্লক এন, বসুন্ধরা আবাসিক এলাকা, ঢাকা ১২২৯</strong>
+            <strong><span class="school">বসুন্ধরা পাবলিক স্কুল এন্ড কলেজ</span><br /> প্লট ০২, ব্লক এন, বসুন্ধরা আবাসিক
+                এলাকা, ঢাকা ১২২৯</strong>
         </div>
     </div>
 
