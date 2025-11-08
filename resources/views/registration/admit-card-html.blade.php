@@ -240,7 +240,6 @@
                             color: #b40059; 
                             font-weight:bold;
                             font-size: 18px;
-                            text-align: center;
                             ">
                                 ** বিশেষ চাহিদাসম্পন্ন ছাত্র-ছাত্রী **
                             </td>
