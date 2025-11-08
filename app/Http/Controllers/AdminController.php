@@ -60,7 +60,7 @@ class AdminController extends Controller
         fprintf($handle, chr(0xEF) . chr(0xBB) . chr(0xBF));
 
         fputcsv($handle, [
-            'Registration ID', 'Name', 'Class','Category', 
+            'Registration ID', 'Name', 'Class', 'Category', 'special_needs' ,
            'Parents Name', 'Parents Phone', 'Email', 'Address', 
            'School/Institution', 'Other Phone', 'Date'
         ]);
@@ -76,6 +76,7 @@ class AdminController extends Controller
                 $reg->name,
                 $grade,
                 $category,
+                $reg->special_needs,
                 $reg->parents_name,
                 $reg->parents_phone,
                 $reg->email,

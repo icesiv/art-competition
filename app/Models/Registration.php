@@ -16,6 +16,7 @@ class Registration extends Model
         'home_address',
         'school',
         'another_phone',
+        'special_needs', // ✅ add this
     ];
 
     protected static function boot()

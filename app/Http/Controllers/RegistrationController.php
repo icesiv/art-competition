@@ -14,26 +14,31 @@ class RegistrationController extends Controller
         return view('registration.index');
     }
 
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'grade' => 'required|string|max:100',
-            'parents_name' => 'required|string|max:255',
-            'parents_phone' => 'required|string|size:11',
-            'email' => 'nullable|email|max:255',
-            'home_address' => 'required|string',
-            'school' => 'required|string|max:255',
-            'another_phone' => 'nullable|string|size:11',
-        ]);
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'grade' => 'required|string|max:100',
+        'parents_name' => 'required|string|max:255',
+        'parents_phone' => 'required|string|size:11',
+        'email' => 'nullable|email|max:255',
+        'home_address' => 'required|string',
+        'school' => 'required|string|max:255',
+        'another_phone' => 'nullable|string|size:11',
+        'special_needs' => 'nullable|boolean', // ✅ new
+    ]);
 
-        $registration = Registration::create($validated);
+    // If checkbox is unchecked, set false
+    $validated['special_needs'] = $request->has('special_needs');
 
-        return redirect()->route('registration.index')
-            ->with('success', 'রেজিস্ট্রেশন সফল হয়েছে!')
-            ->with('registration_id', $registration->registration_id)
-            ->with('parents_phone', $registration->parents_phone);
-    }
+    $registration = Registration::create($validated);
+
+    return redirect()->route('registration.index')
+        ->with('success', 'রেজিস্ট্রেশন সফল হয়েছে!')
+        ->with('registration_id', $registration->registration_id)
+        ->with('parents_phone', $registration->parents_phone);
+}
+
 
     public function download(Request $request)
     {

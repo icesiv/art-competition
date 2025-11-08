@@ -103,9 +103,10 @@
             <img src="assets/bpsc-logo.png" class="hidden md:block w-24 h-auto" alt="BPSC Logo">
         </div>
 
+        <h2
+            class="text-xl text-center text-cyan-50 font-bold rounded-lg bg-gradient-to-r from-transparent via-green-500 to-transparent mb-2 p-1">
+            প্রতিযোগীর তথ্য</h2>
 
-
-        <h2 class="text-xl text-center rounded-lg  bg-gray-100 font-semibold text-primary mb-2 p-2">রেজিস্ট্রেশন ফর্ম</h2>
 
         <form method="POST" action="{{ route('registration.store') }}" class="space-y-6">
             @csrf
@@ -113,12 +114,25 @@
             <!-- Name -->
             <div>
                 <label for="name" class="block text-gray-700 font-semibold mb-2">
-                    নাম <span class="text-red-500">*</span>
+                    শিক্ষার্থীর পূর্ণ নাম <span class="text-red-500">*</span>
                 </label>
                 <input type="text" id="name" name="name" value="{{ old('name') }}"
                     class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none transition-colors @error('name') border-red-500 @enderror"
                     placeholder="শিক্ষার্থীর পূর্ণ নাম লিখুন" required>
                 @error('name')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <!-- School -->
+            <div>
+                <label for="school" class="block text-gray-700 font-semibold mb-2">
+                    স্কুল / প্রতিষ্ঠানের নাম <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="school" name="school" value="{{ old('school') }}"
+                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none transition-colors @error('school') border-red-500 @enderror"
+                    placeholder="শিক্ষা প্রতিষ্ঠানের পূর্ণ নাম লিখুন" required>
+                @error('school')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
@@ -134,7 +148,7 @@
                     <!-- Grade Select -->
                     <div class="relative">
                         <select id="grade" name="grade"
-                            class="w-full px-4 py-3 pr-10 border-2 border-gray-200 rounded-lg appearance-none
+                            class="w-full px-4 py-1 pr-10 border-2 border-gray-200 rounded-lg appearance-none
                        focus:border-primary focus:outline-none transition-colors leading-[2.2rem]
                        @error('grade') border-red-500 @enderror"
                             required>
@@ -168,7 +182,7 @@
 
                     <!-- Category Display -->
                     <input type="text" id="grade_category"
-                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg bg-gray-100 text-gray-700"
+                        class="w-full px-4 py-1 border-2 border-gray-200 rounded-lg bg-gray-100 text-gray-700"
                         value="ক্যাটাগরী-১" placeholder="ক্যাটাগরী-১" disabled>
 
                 </div>
@@ -178,8 +192,24 @@
                 @enderror
             </div>
 
+                        <!-- বিশেষ চাহিদাসম্পন্ন ছাত্র-ছাত্রী -->
+            <div class="flex items-center mt-4 ml-2">
+                <input type="checkbox" id="special_needs" name="special_needs" value="1"
+                    {{ old('special_needs') ? 'checked' : '' }}
+                    class="w-5 h-5 text-primary border-2 border-gray-300 rounded focus:ring-primary focus:ring-2 focus:outline-none transition-all cursor-pointer">
+                <label for="special_needs" class="ml-2 text-gray-700 font-semibold select-none cursor-pointer">
+                    বিশেষ চাহিদাসম্পন্ন ছাত্র-ছাত্রী
+                </label>
+            </div>
+            @error('special_needs')
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
 
 
+
+            <h2
+                class="text-xl text-center text-cyan-50 font-bold rounded-lg bg-gradient-to-r from-transparent via-green-500 to-transparent mb-2 p-1">
+                অভিভাবকের তথ্য</h2>
             <!-- Parents Name -->
             <div>
                 <label for="parents_name" class="block text-gray-700 font-semibold mb-2">
@@ -187,7 +217,7 @@
                 </label>
                 <input type="text" id="parents_name" name="parents_name" value="{{ old('parents_name') }}"
                     class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none transition-colors @error('parents_name') border-red-500 @enderror"
-                    placeholder="বাবা/মা এর নাম লিখুন" required>
+                    placeholder="অভিভাবকের এর নাম লিখুন" required>
                 @error('parents_name')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
@@ -197,7 +227,7 @@
             <div class="grid md:grid-cols-2 gap-4">
                 <div>
                     <label for="parents_phone" class="block text-gray-700 font-semibold mb-2">
-                        অভিভাবকের ফোন নম্বর <span class="text-red-500">*</span>
+                        অভিভাবকের মোবাইল নম্বর <span class="text-red-500">*</span>
                     </label>
                     <input type="tel" id="parents_phone" name="parents_phone" pattern="[0-9]{11}"
                         value="{{ old('parents_phone') }}"
@@ -212,7 +242,7 @@
 
                 <div>
                     <label for="another_phone" class="block text-gray-700 font-semibold mb-2">
-                        অন্য ফোন নম্বর <span class="text-gray-500 font-normal text-sm">(ঐচ্ছিক)</span>
+                        বিকল্প মোবাইল নম্বর <span class="text-gray-500 font-normal text-sm">(ঐচ্ছিক)</span>
                     </label>
                     <input type="tel" id="another_phone" name="another_phone" pattern="[0-9]{11}"
                         value="{{ old('another_phone') }}"
@@ -231,19 +261,6 @@
                 <input type="email" id="email" name="email" value="{{ old('email') }}"
                     class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none transition-colors"
                     placeholder="example@email.com">
-            </div>
-
-            <!-- School -->
-            <div>
-                <label for="school" class="block text-gray-700 font-semibold mb-2">
-                    স্কুল / প্রতিষ্ঠানের নাম <span class="text-red-500">*</span>
-                </label>
-                <input type="text" id="school" name="school" value="{{ old('school') }}"
-                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none transition-colors @error('school') border-red-500 @enderror"
-                    placeholder="শিক্ষা প্রতিষ্ঠানের পূর্ণ নাম লিখুন" required>
-                @error('school')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
             </div>
 
             <!-- Address -->
