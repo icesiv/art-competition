@@ -235,7 +235,13 @@
 
                     @if ($registration->special_needs)
                         <tr>
-                            <td class="label" colspan="2" style="color: #b40059; font-weight:bold;">
+                            <td class="label" colspan="2" 
+                            style="
+                            color: #b40059; 
+                            font-weight:bold;
+                            font-size: 18px;
+                            text-align: center;
+                            ">
                                 ** বিশেষ চাহিদাসম্পন্ন ছাত্র-ছাত্রী **
                             </td>
                         </tr>
