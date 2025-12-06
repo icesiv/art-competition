@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 
 // Registration routes
 Route::get('/', [RegistrationController::class, 'index'])->name('registration.index');
+Route::get('/check', [RegistrationController::class, 'check'])->name('registration.check');
 Route::post('/register', [RegistrationController::class, 'store'])->name('registration.store');
 Route::post('/download', [RegistrationController::class, 'download'])->name('registration.download');
 

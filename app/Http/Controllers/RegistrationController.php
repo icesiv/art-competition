@@ -14,6 +14,22 @@ class RegistrationController extends Controller
         return view('registration.index');
     }
 
+    public function check(Request $request)
+    {
+        $registrations = [];
+        if ($request->has('phone')) {
+            $request->validate([
+                'phone' => 'required|string|size:11',
+            ]);
+
+            $registrations = Registration::where('parents_phone', $request->phone)
+                ->orWhere('another_phone', $request->phone)
+                ->get();
+        }
+
+        return view('registration.index', compact('registrations'));
+    }
+
 public function store(Request $request)
 {
     $validated = $request->validate([

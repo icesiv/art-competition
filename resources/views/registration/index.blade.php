@@ -74,214 +74,81 @@
         </div>
     @endif
 
-    <!-- Registration Form Card -->
-    <div class="bg-white rounded-2xl shadow-2xl p-8 mb-8">
-        <div
-            class="w-full flex flex-col md:flex-row items-center justify-between mb-4 gap-4 md:gap-0 border-b-2 border-primary pb-3">
-
-            <!-- Mobile: Logos together -->
-            <div class="flex md:hidden w-full justify-between items-center">
-                <img src="assets/art-logo-new.png" class="w-20 h-auto" alt="Art Logo">
-                <img src="assets/bpsc-logo.png" class="w-16 h-auto" alt="BPSC Logo">
-            </div>
-
-
-            <!-- Desktop: Left Logo -->
-            <img src="assets/art-logo-new.png" class="hidden md:block w-32 h-auto" alt="Art Logo">
-
-            <!-- Title -->
-            <div class="text-center md:mx-4">
-                <h1 class="text-2xl md:text-4xl font-bold text-primary leading-snug md:leading-[2.8rem]">
-                    বসুন্ধরা পাবলিক স্কুল এন্ড কলেজ<br />ছবি আঁকা প্রতিযোগিতা
-                </h1>
-                <p class="text-gray-600 text-lg md:text-2xl mt-1">
-                    একাত্তরের মুক্তিযুদ্ধ ও জুলাই গণঅভ্যুত্থান
-                </p>
-            </div>
-
-            <!-- Desktop: Right Logo -->
-            <img src="assets/bpsc-logo.png" class="hidden md:block w-24 h-auto" alt="BPSC Logo">
+    <!-- Registration Closed Message -->
+    <div class="bg-white rounded-2xl shadow-2xl p-8 mb-8 text-center">
+        <div class="mb-6">
+            <svg class="w-20 h-20 text-red-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">রেজিস্ট্রেশন সময় শেষ</h2>
+            <p class="text-gray-600 text-lg">দুঃখিত, এই প্রতিযোগিতার জন্য রেজিস্ট্রেশন প্রক্রিয়া বর্তমানে বন্ধ রয়েছে।</p>
         </div>
 
-        <h2
-            class="text-xl text-center text-cyan-50 font-bold rounded-lg bg-gradient-to-r from-transparent via-green-500 to-transparent mb-2 p-1">
-            প্রতিযোগীর তথ্য</h2>
-
-
-        <form method="POST" action="{{ route('registration.store') }}" class="space-y-6">
-            @csrf
-
-            <!-- Name -->
-            <div>
-                <label for="name" class="block text-gray-700 font-semibold mb-2">
-                    শিক্ষার্থীর পূর্ণ নাম <span class="text-red-500">*</span>
-                </label>
-                <input type="text" id="name" name="name" value="{{ old('name') }}"
-                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none transition-colors @error('name') border-red-500 @enderror"
-                    placeholder="শিক্ষার্থীর পূর্ণ নাম লিখুন" required>
-                @error('name')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <!-- School -->
-            <div>
-                <label for="school" class="block text-gray-700 font-semibold mb-2">
-                    স্কুল / প্রতিষ্ঠানের নাম <span class="text-red-500">*</span>
-                </label>
-                <input type="text" id="school" name="school" value="{{ old('school') }}"
-                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none transition-colors @error('school') border-red-500 @enderror"
-                    placeholder="শিক্ষা প্রতিষ্ঠানের পূর্ণ নাম লিখুন" required>
-                @error('school')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <!-- Grade + Category -->
-            <div>
-                <label class="block text-gray-700 font-semibold mb-2">
-                    শ্রেণী <span class="text-red-500">*</span>
-                </label>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 relative">
-
-                    <!-- Grade Select -->
-                    <div class="relative">
-                        <select id="grade" name="grade"
-                            class="w-full px-4 py-1 pr-10 border-2 border-gray-200 rounded-lg appearance-none
-                       focus:border-primary focus:outline-none transition-colors leading-[2.2rem]
-                       @error('grade') border-red-500 @enderror"
-                            required>
-
-                            <option value="তৃতীয় শ্রেণি" {{ old('grade') == 'তৃতীয় শ্রেণি' ? 'selected' : '' }}>তৃতীয়
-                                শ্রেণি</option>
-                            <option value="চতুর্থ শ্রেণি" {{ old('grade') == 'চতুর্থ শ্রেণি' ? 'selected' : '' }}>চতুর্থ
-                                শ্রেণি</option>
-                            <option value="পঞ্চম শ্রেণি" {{ old('grade') == 'পঞ্চম শ্রেণি' ? 'selected' : '' }}>পঞ্চম
-                                শ্রেণি</option>
-                            <option value="ষষ্ঠ শ্রেণি" {{ old('grade') == 'ষষ্ঠ শ্রেণি' ? 'selected' : '' }}>ষষ্ঠ শ্রেণি
-                            </option>
-                            <option value="সপ্তম শ্রেণি" {{ old('grade') == 'সপ্তম শ্রেণি' ? 'selected' : '' }}>সপ্তম
-                                শ্রেণি</option>
-                            <option value="অষ্টম শ্রেণি" {{ old('grade') == 'অষ্টম শ্রেণি' ? 'selected' : '' }}>অষ্টম
-                                শ্রেণি</option>
-                            <option value="নবম শ্রেণি" {{ old('grade') == 'নবম শ্রেণি' ? 'selected' : '' }}>নবম শ্রেণি
-                            </option>
-                            <option value="দশম শ্রেণি" {{ old('grade') == 'দশম শ্রেণি' ? 'selected' : '' }}>দশম শ্রেণি
-                            </option>
-                        </select>
-
-                        <!-- Custom Arrow -->
-                        <span class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
-                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
-                                viewBox="0 0 24 24">
-                                <path d="M6 9l6 6 6-6" />
-                            </svg>
-                        </span>
+        <!-- Check Registration Form -->
+        <div class="mt-8 border-t-2 border-gray-100 pt-8">
+            <h3 class="text-xl font-bold text-primary mb-6">আপনার রেজিস্ট্রেশন যাচাই করুন</h3>
+            
+            <form method="GET" action="{{ route('registration.check') }}" class="max-w-xl mx-auto">
+                <div class="mb-4">
+                    <label for="check_phone" class="block text-gray-700 font-semibold mb-2 text-left">
+                        অভিভাবকের মোবাইল নম্বর
+                    </label>
+                    <div class="flex gap-2">
+                        <input type="tel" id="check_phone" name="phone" pattern="[0-9]{11}"
+                            value="{{ request('phone') }}"
+                            class="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none transition-colors"
+                            placeholder="01xxxxxxxxx" required>
+                        <button type="submit"
+                            class="bg-primary hover:bg-green-700 text-white px-8 py-3 rounded-lg font-bold transition-colors shadow-lg">
+                            খুঁজুন
+                        </button>
                     </div>
-
-                    <!-- Category Display -->
-                    <input type="text" id="grade_category"
-                        class="w-full px-4 py-1 border-2 border-gray-200 rounded-lg bg-gray-100 text-gray-700"
-                        value="ক্যাটাগরী-১" placeholder="ক্যাটাগরী-১" disabled>
-
                 </div>
+            </form>
 
-                @error('grade')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <!-- বিশেষ চাহিদাসম্পন্ন ছাত্র-ছাত্রী -->
-            <div class="flex items-center mt-4 ml-2">
-                <input type="checkbox" id="special_needs" name="special_needs" value="1"
-                    {{ old('special_needs') ? 'checked' : '' }}
-                    class="w-5 h-5 text-primary border-2 border-gray-300 rounded focus:ring-primary focus:ring-2 focus:outline-none transition-all cursor-pointer">
-                <label for="special_needs" class="ml-2 text-gray-700 font-semibold select-none cursor-pointer">
-                    বিশেষ চাহিদাসম্পন্ন ছাত্র-ছাত্রী
-                </label>
-            </div>
-            @error('special_needs')
-                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-            @enderror
-
-
-
-            <h2
-                class="text-xl text-center text-cyan-50 font-bold rounded-lg bg-gradient-to-r from-transparent via-green-500 to-transparent mb-2 p-1">
-                অভিভাবকের তথ্য</h2>
-            <!-- Parents Name -->
-            <div>
-                <label for="parents_name" class="block text-gray-700 font-semibold mb-2">
-                    অভিভাবকের নাম <span class="text-red-500">*</span>
-                </label>
-                <input type="text" id="parents_name" name="parents_name" value="{{ old('parents_name') }}"
-                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none transition-colors @error('parents_name') border-red-500 @enderror"
-                    placeholder="অভিভাবকের এর নাম লিখুন" required>
-                @error('parents_name')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <!-- Phone Numbers Row -->
-            <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                    <label for="parents_phone" class="block text-gray-700 font-semibold mb-2">
-                        অভিভাবকের মোবাইল নম্বর <span class="text-red-500">*</span>
-                    </label>
-                    <input type="tel" id="parents_phone" name="parents_phone" pattern="[0-9]{11}"
-                        value="{{ old('parents_phone') }}"
-                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none transition-colors @error('parents_phone') border-red-500 @enderror"
-                        placeholder="01xxxxxxxxx" required
-                        oninvalid="this.setCustomValidity('সঠিক ১১ সংখ্যার ফোন নম্বর লিখুন (০১XXXXXXXXX)')"
-                        oninput="this.setCustomValidity('')">
-                    @error('parents_phone')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
+            <!-- Search Results -->
+            @if(isset($registrations) && count($registrations) > 0)
+                <div class="mt-8">
+                    <h4 class="text-lg font-semibold text-gray-700 mb-4">রেজিস্ট্রেশন তালিকা</h4>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-50 border-b border-gray-200">
+                                    <th class="px-4 py-3 text-gray-600 font-medium">নাম</th>
+                                    <th class="px-4 py-3 text-gray-600 font-medium">শ্রেণী</th>
+                                    <th class="px-4 py-3 text-gray-600 font-medium">রেজিস্ট্রেশন আইডি</th>
+                                    <th class="px-4 py-3 text-gray-600 font-medium text-right">অ্যাকশন</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($registrations as $reg)
+                                    <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                        <td class="px-4 py-3 font-medium text-gray-800">{{ $reg->name }}</td>
+                                        <td class="px-4 py-3 text-gray-600">{{ $reg->grade }}</td>
+                                        <td class="px-4 py-3 text-gray-600 font-mono">{{ $reg->registration_id }}</td>
+                                        <td class="px-4 py-3 text-right">
+                                            <a href="{{ route('admit-card.view', ['registrationId' => $reg->registration_id, 'phone' => $reg->parents_phone]) }}" 
+                                               target="_blank"
+                                               class="inline-flex items-center px-4 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors text-sm font-semibold">
+                                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                                </svg>
+                                                ডাউনলোড
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-
-                <div>
-                    <label for="another_phone" class="block text-gray-700 font-semibold mb-2">
-                        বিকল্প মোবাইল নম্বর <span class="text-gray-500 font-normal text-sm">(ঐচ্ছিক)</span>
-                    </label>
-                    <input type="tel" id="another_phone" name="another_phone" pattern="[0-9]{11}"
-                        value="{{ old('another_phone') }}"
-                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none transition-colors"
-                        placeholder="01xxxxxxxxx"
-                        oninvalid="this.setCustomValidity('সঠিক ১১ সংখ্যার ফোন নম্বর লিখুন (০১XXXXXXXXX)')"
-                        oninput="this.setCustomValidity('')">
+            @elseif(request('phone'))
+                <div class="mt-6 p-4 bg-yellow-50 text-yellow-800 rounded-lg">
+                    কোন রেজিস্ট্রেশন পাওয়া যায়নি। অনুগ্রহ করে সঠিক মোবাইল নম্বর দিন।
                 </div>
-            </div>
-
-            <!-- Email -->
-            <div>
-                <label for="email" class="block text-gray-700 font-semibold mb-2">
-                    ইমেইল <span class="text-gray-500 font-normal text-sm">(ঐচ্ছিক)</span>
-                </label>
-                <input type="email" id="email" name="email" value="{{ old('email') }}"
-                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none transition-colors"
-                    placeholder="example@email.com">
-            </div>
-
-            <!-- Address -->
-            <div>
-                <label for="home_address" class="block text-gray-700 font-semibold mb-2">
-                    বাসার ঠিকানা <span class="text-red-500">*</span>
-                </label>
-                <textarea id="home_address" name="home_address" rows="3"
-                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none transition-colors resize-none @error('home_address') border-red-500 @enderror"
-                    placeholder="সম্পূর্ণ ঠিকানা লিখুন (বাড়ি/গ্রাম, রোড, থানা, জেলা)" required>{{ old('home_address') }}</textarea>
-                @error('home_address')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit"
-                class="w-full bg-green-800 from-primary to-secondary text-white py-4 rounded-lg hover:shadow-xl transform hover:-translate-y-1 transition-all font-bold text-lg">
-                রেজিস্ট্রেশন করুন
-            </button>
-        </form>
+            @endif
+        </div>
     </div>
 
     <!-- Script -->
