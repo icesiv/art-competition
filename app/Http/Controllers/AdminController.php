@@ -18,8 +18,18 @@ class AdminController extends Controller
             return view('admin.login');
         }
 
-        $registrations = Registration::orderBy('created_at', 'desc')
-            ->paginate(50);
+        $query = Registration::orderBy('created_at', 'desc');
+
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('registration_id', 'like', "%{$search}%")
+                  ->orWhere('parents_phone', 'like', "%{$search}%")
+                  ->orWhere('name', 'like', "%{$search}%");
+            });
+        }
+
+        $registrations = $query->paginate(50)->withQueryString();
 
         $totalRegistrations = Registration::count();
 

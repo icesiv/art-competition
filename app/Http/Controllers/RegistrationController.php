@@ -49,6 +49,15 @@ public function store(Request $request)
 
     $registration = Registration::create($validated);
 
+    if ($request->wantsJson()) {
+        return response()->json([
+            'success' => true,
+            'message' => 'রেজিস্ট্রেশন সফল হয়েছে!',
+            'registration_id' => $registration->registration_id,
+            'parents_phone' => $registration->parents_phone
+        ]);
+    }
+
     return redirect()->route('registration.index')
         ->with('success', 'রেজিস্ট্রেশন সফল হয়েছে!')
         ->with('registration_id', $registration->registration_id)
